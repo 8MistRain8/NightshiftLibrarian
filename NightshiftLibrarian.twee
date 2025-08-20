@@ -364,13 +364,51 @@ setup.chapterImages = {
         "https://i.imgur.com/204gSfS.gif",/*2.18*/
     ],
     3: [
-        "https://example.com/ch3-img1.gif",
-        "https://example.com/ch3-img2.gif",
+        "https://i.imgur.com/DO6xmLx.gif",/*3.1*/
+        "https://i.imgur.com/bhJocS3.gif",/*3.2*/
+      	"https://i.imgur.com/0gWkJKv.gif",/*3.3*/
+      	"https://i.imgur.com/hYkMsvC.gif",/*3.4*/
+      	"https://i.imgur.com/pOgWufW.gif",/*3.5*/
+      	"https://i.imgur.com/FgY8jrD.gif",/*3.6*/
+      	"https://i.imgur.com/GuJh3nW.gif",/*3.7*/
     ],
-    4: [],
-    5: [],
-    6: [],
-    7: []
+    4: [
+      	"https://i.imgur.com/YplIYeG.gif",/*4.1*/
+       	"https://i.imgur.com/gjAatM9.gif",/*4.2.1*/
+       	"https://i.imgur.com/DUZbLLg.gif",/*4.2.2*/
+      	"https://i.imgur.com/PSKUirS.gif",/*4.3*/
+       	"https://i.imgur.com/SAwr6Kg.gif",/*4.4*/
+       	"https://i.imgur.com/rh7CZ32.gif",/*4.5*/
+       	"https://i.imgur.com/PpG01sK.gif",/*4.6*/
+       	"https://i.imgur.com/SMhUZXP.gif",/*4.7*/
+      	"https://i.imgur.com/IDCfJRI.gif",/*4.8*/
+    ],
+    5: [
+    	"https://i.imgur.com/wvrmmYZ.gif",/*5.1*/
+      	"https://i.imgur.com/pHGluA9.gif",/*5.2*/
+    ],
+    6: [
+    	"https://i.imgur.com/PNhNt0y.gif",/*6.1*/
+      	"https://i.imgur.com/UiTlIYU.gif",/*6.2*/
+      	"https://i.imgur.com/EKkONpp.gif",/*6.3*/
+      	"https://i.imgur.com/suTgSsp.gif",/*6.4*/
+      	"https://i.imgur.com/CXiKuhV.gif",/*6.5*/
+      	"https://i.imgur.com/6xere0O.gif",/*6.6*/
+      	"https://i.imgur.com/94Vq2Rq.gif",/*6.7*/
+      	"https://i.imgur.com/Aq1NywI.gif",/*6.8*/
+      	"https://i.imgur.com/BdulXv4.gif",/*6.9*/
+      	"https://i.imgur.com/93gDLrB.gif",/*6.10*/      
+    ],
+    7: [
+    	"https://i.imgur.com/uZN3VL5.gif",/*7.1*/
+      	"https://i.imgur.com/3S71jrd.gif",/*7.2*/
+      	"https://i.imgur.com/iGF25Bi.gif",/*7.3*/
+      	"https://i.imgur.com/OXadxij.gif",/*7.4*/
+      	"https://i.imgur.com/1yp0mvI.gif",/*7.5*/
+      	"https://i.imgur.com/h4hEQWt.gif",/*7.6.1*/
+      	"https://i.imgur.com/g8ptn1T.gif",/*7.6.2*/
+      	"https://i.imgur.com/GjDi8E8.gif",/*7.6.3*/
+    ]
 };
 
 /* Mark chapters as preloaded */
