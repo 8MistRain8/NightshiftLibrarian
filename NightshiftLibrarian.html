@@ -124,6 +124,12 @@ img {
   line-height: 1.5;    /* Optional: Adjust line height for readability */
 }
 
+/* Perpetual Background */
+body {
+  background: url("https://i.imgur.com/bxurvAN.jpg") repeat center top;
+  background-size: 800px auto;
+}
+
 /*-------------------------------FADE-----------------------------------*/
 #element {
     -webkit-animation: fadein 3s ease forwards; /* For Webkit browsers (Safari, Chrome) */
@@ -234,6 +240,8 @@ img {
 }
 /* <span class="redacted">scars on my hand.</span> */
 /*-------------------------------REDACTED TEXT------------------*/
+
+/*Next page color and styling FAILED*/
 a.link-internal:contains("Turn Page...") {
   color: #fff;
   font-weight: bold;
@@ -268,8 +276,9 @@ a.link-internal:contains("Turn Page...") {
     background-color: #4CA3A8 !important;
 }
 
+/* Next passage color */
 a {
-    color: #013220;  /* Change to your desired color (e.g., Tomato) */
+    color: #A0CFA0;  /* Change to your desired color (e.g., Tomato) */
     text-decoration: none;  /* Remove underline if desired */
 }
 
@@ -467,20 +476,45 @@ $(document).on(':passagerender', function () {
 &lt;/div&gt;
 
 &lt;div align=&#39;center&#39; style=&#39;font-size: 200%;&#39;&gt;\
-   A game by MISTRAIN, 2025. \
+   A game by MISTRAIN. \
 &lt;/div&gt;
-
-&lt;div align=&#39;center&#39; style=&#39;font-size: 150%;&#39;&gt;\
+&lt;div align=&#39;center&#39; style=&#39;font-size: 100%;&#39;&gt;\
    Close the sidebar with the arrow. 
-   Hit F11 for a fullscreen viewing experience. 
+   F11 for a fullscreen experience. 
    Turn of the lights.
    Listen to the rain. 
-   
-   Game is loading...\
-&lt;/div&gt;
 
-&lt;div align=&#39;center&#39; style=&#39;font-size: 100%;&#39;&gt;\
-  [[Open...-&gt;Chapter1.1]] \
+&lt;div align=&#39;center&#39; style=&#39;font-size: 150%;&#39;&gt;\
+ Choose your preferred text size.&lt;/div&gt;
+ &lt;div align=&#39;center&#39; style=&#39;font-size: 100%;&#39;&gt;\
+  ---------------------------------------------------------------
+&lt;&lt;link &quot;Squint.&quot;&gt;&gt;
+  &lt;&lt;set $textSize = 100&gt;&gt;
+  &lt;&lt;run $(&#39;#passages&#39;).css(&#39;font-size&#39;, $textSize + &#39;%&#39;)&gt;&gt;
+  &lt;p&gt;Text size set to Small.&lt;/p&gt;
+&lt;&lt;/link&gt;&gt;
+
+&lt;&lt;link &quot;Standard Eye&quot;&gt;&gt;
+  &lt;&lt;set $textSize = 120&gt;&gt;
+  &lt;&lt;run $(&#39;#passages&#39;).css(&#39;font-size&#39;, $textSize + &#39;%&#39;)&gt;&gt;
+  &lt;p&gt;Text size set to Medium.&lt;/p&gt;
+&lt;&lt;/link&gt;&gt;
+
+&lt;&lt;link &quot;Might Need Glasses.&quot;&gt;&gt;
+  &lt;&lt;set $textSize = 150&gt;&gt;
+  &lt;&lt;run $(&#39;#passages&#39;).css(&#39;font-size&#39;, $textSize + &#39;%&#39;)&gt;&gt;
+  &lt;p&gt;Text size set to Large.&lt;/p&gt;
+&lt;&lt;/link&gt;&gt;
+
+&lt;&lt;link &quot;Tired Eyes.&quot;&gt;&gt;
+  &lt;&lt;set $textSize = 200&gt;&gt;
+  &lt;&lt;run $(&#39;#passages&#39;).css(&#39;font-size&#39;, $textSize + &#39;%&#39;)&gt;&gt;
+  &lt;p&gt;Text size set to Large.&lt;/p&gt;
+&lt;&lt;/link&gt;&gt;
+-------------------------------------------------------
+&lt;/div&gt;
+&lt;div align=&#39;center&#39; style=&#39;font-size: 200%;&#39;&gt;\
+  [[Try to remember...-&gt;Chapter1.1]] \
 &lt;/div&gt;
 
 &lt;&lt;audio Chapter1 play volume 0.5 loop&gt;&gt;
@@ -718,7 +752,16 @@ Focusing on the feeling I had felt at the library, I tried to understand why I f
 
 &lt;div align=&#39;center&#39; style=&#39;font-size: 100%;&#39;&gt;\
   [[Turn Page...-&gt;Chapter3.2]] \
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="13" name="StoryInit" tags="" position="550,325" size="100,100">&lt;&lt;cacheaudio &quot;Chapter1&quot; &quot;https://ia601802.us.archive.org/12/items/the-poor-graduates-demo/Chapter1%20-%20Introvert.ogg&quot;&gt;&gt; </tw-passagedata><tw-passagedata pid="14" name="Chapter3.2" tags="" position="1200,1325" size="100,100">&lt;p class=&quot;indent&quot;&gt;Walking along the outer row of shelves, I spotted something new on the wall. A dark wooden plaque, with a square of black leather fixed in the middle.&lt;/p&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="13" name="StoryInit" tags="" position="550,325" size="100,100">&lt;&lt;set $textSize = 100&gt;&gt;  
+
+&lt;&lt;script&gt;&gt;
+$(document).on(&#39;:passageend&#39;, function() {
+    $(&#39;#passages&#39;).css(&#39;font-size&#39;);
+});
+&lt;&lt;/script&gt;&gt;
+
+&lt;&lt;cacheaudio &quot;Chapter1&quot; &quot;https://ia601802.us.archive.org/12/items/the-poor-graduates-demo/Chapter1%20-%20Introvert.ogg&quot;&gt;&gt; 
+</tw-passagedata><tw-passagedata pid="14" name="Chapter3.2" tags="" position="1200,1325" size="100,100">&lt;p class=&quot;indent&quot;&gt;Walking along the outer row of shelves, I spotted something new on the wall. A dark wooden plaque, with a square of black leather fixed in the middle.&lt;/p&gt;
 
 &lt;img src=&quot;https://i.imgur.com/pOgWufW.gif&quot; alt=&quot;3.5&quot;&gt;
 &lt;p class=&quot;indent&quot;&gt;The distraction of other trinkets, emblems, and paintings on the wall made this particular dark square stand out. I just stood and stared as it took my full attention. I felt a tightening in my chest, and a mix of fear and sadness suddenly washed over me. The sound of rain tuned in louder and I could hear my shallow breaths clearly. I stepped closer without realizing. It felt like I was in a tunnel, now only this piece of leather in front of me, my eyes inspecting the tiny grains, the subtle shines and the hue shifts. I felt chills running down my spine and felt the need to lift my hand to touch it, but there was a sinking feeling in my heart growing, the closer I got to it.
