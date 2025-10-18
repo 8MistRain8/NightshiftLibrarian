@@ -389,10 +389,12 @@ I stepped further in and turned around to look out the big window next to the do
 	 Chapter 5 - Always Midnight. \
 </div>
 <p class="indent">The dark fog still lingered, and my clothes got a bit damp on the way back to the library. I didn't see a single person on the way. The large gates were still open, they were never closed and were mostly for decorative use. I stepped out into the courtyard. It was hard to see the park because of the swirling mist, but I walked along the path to the library’s entrance. Just as I reached the awning, raindrops began to break through the night. I was lucky, I made it back right before the rain.</p>  
+
 <img src="https://i.imgur.com/wvrmmYZ.gif" alt="5.1">
 <p class="indent">I tried the doors, they weren’t locked, which made just as much sense as it didn’t. I felt a nervous anticipation as the doors creaked open, reverberating into the desolate main hall. 
 <p class="indent">Everything stood completely still in the dark, except for some faint lamps that had been left on, and the windows letting in some dim light. It was like walking into a wall of deafening solitude, the only sound to be heard was the quiet drizzle from the outside. I took a few steps in, then paused and took the calm in. I took out my phone to use the flashlight function. No new messages. The clock was 7:55 pm, and with only 5 minutes left, I needed to get to the librarian’s office. 
 <p class="indent">The library felt even bigger at night, the darkness and silence pressing me with almost a physical force. Most people would probably feel uncomfortable and strange being here at night, but to me, it felt like the opposite. Using the light from my phone, I made my way upstairs to the librarian’s office, and as I reached the final step, my phone buzzed gently in my pocket.</p> 
+
 <img src="https://i.imgur.com/IyF5gZD.gif" alt="2.12">
 <p class="indent">“I’m very happy that you could join me tonight for your first shift.”
 <p class="indent">A new message immediately followed.
@@ -404,10 +406,12 @@ I stepped further in and turned around to look out the big window next to the do
 <p class="indent">I glanced up from my phone to see the box, and to the left of it, a door I had never noticed before. The lights in the librarian's office were dark. 
 <p class="indent">“I need you to get the key for it, your task for tonight is in there.” 
 <p class="indent">No new messages followed. As I was about to type out a reply, my phone died and shut off.</p>  
+
 <img src="https://i.imgur.com/pHGluA9.gif" alt="5.2">
 <p class="indent">The screen just went black. I tried to restart it, but there was no life in it. The battery was seemingly fully drained. I pocketed my phone and glanced at the librarian's door. I didn’t think much of it, my phone was old and had been acting up before, just poor timing right now. I didn’t dare to knock on her door, maybe she would be really angry if I disturbed her. Even though I’ve never met her, I had an inherent feeling she could get very angry. I shook off the unease and instead focused on the fact that this must be a test. I had to find this key on my own. She was testing me. 
 <p class="indent">It would be more impressive to find it on my own, testing my navigation and knowledge of the library. My worry was replaced by a focused confidence. If anyone could do this flawlessly, it was me. No one spent as much time here as I did, I thought.
 <p class="indent">I had a subtle feeling that the best place to start would be at the central statue, and then go from there. My eyes had adjusted to the dark and I realized I had no trouble distinguishing my surroundings, a relief, since my phone was dead.</p>  
+
 <div align='center' style='font-size: 100%;'>\
   [[Turn Page...->Chapter5.2]] \
 </div>
@@ -437,7 +441,7 @@ I’m not there anymore.
 I’m not there anymore.
 I’m not there anymore.
 I’m not there anymore.
-I’m not <span class="glitchy">here</span> anymore. 
+I’m not <span class="glitchy">here</span>anymore. 
 
 <div align='center' style='font-size: 100%;'>\
   [[Accept...->Chapter6.1]] \
@@ -658,6 +662,7 @@ I miss you so much.</p>
   [[Try to remember...->Chapter1.1]] \
 </div>
 
+<<audio Chapter1 play volume 0.5 loop>>
 
 
 
@@ -689,6 +694,7 @@ $(document).on(':passageend', function() {
 });
 <</script>>
 
+<<cacheaudio "Chapter1" "https://ia601802.us.archive.org/12/items/the-poor-graduates-demo/Chapter1%20-%20Introvert.ogg">> 
 
 
 
@@ -792,79 +798,6 @@ setup.chapterImages = {
     ]
 };
 
-// Track currently playing music
-let currentMusic = null;
-
-// Music URLs per passage
-setup.passageMusic = {
-    "Chapter1.1": "https://dn721909.ca.archive.org/0/items/nightshift_librarian/The_Poor_Graduates.mp3", /* Poor Graduates */
-    "Chapter2.2": "https://dn721909.ca.archive.org/0/items/nightshift_librarian/Anxious.mp3", /* Anxious */
-    "Chapter2.5": "https://dn721909.ca.archive.org/0/items/nightshift_librarian/Black_Leather.mp3", /* BlackLeather */ 		
-    "Chapter2.6": "https://dn721909.ca.archive.org/0/items/nightshift_librarian/In_The_Grass.mp3", /* InTheGrass */
-     "Chapter3.1": "https://dn721909.ca.archive.org/0/items/nightshift_librarian/The_Poor_Graduates.mp3", /* Poor Graduates */
-      "Chapter3.2": "https://dn721909.ca.archive.org/0/items/nightshift_librarian/Uncertain.mp3", /* Uncertain */
-  	"Chapter4.1": "https://ia801006.us.archive.org/28/items/nightshift_librarian/Josef%27s.mp3" /* Josef's */
-
-};
-
-/* Optional next passage mapping for preloading */
-setup.nextPassageMap = {
-    "Chapter1.1": "Chapter2.2",
-    "Chapter2.2": "Chapter2.5",
-    "Chapter2.5": "Chapter2.6",
-  	"Chapter2.6": "Chapter3.1",
-    "Chapter3.1": "Chapter3.2",
-};
-
-/* MUSIC SYSTEM ----------------------------------- */
-
-/* Preload audio and cache it */
-function preloadAudio(url) {
-    const audio = new Audio();
-    audio.src = url;
-    audio.preload = "auto";
-    if (!setup._audioCache) setup._audioCache = {};
-    setup._audioCache[url] = audio;
-}
-
-/* Play audio for passage */
-function playPassageMusic(url) {
-    if (currentMusic && currentMusic.src === url) return; // already playing
-
-    if (currentMusic) {
-        currentMusic.pause();
-        currentMusic.currentTime = 0;
-    }
-
-    const cached = setup._audioCache?.[url];
-    currentMusic = cached ? cached : new Audio(url);
-    currentMusic.loop = true;
-    currentMusic.volume = 1.0;
-
-    // Show "Loading audio..." indicator
-    $("#music-status").remove();
-    $("body").append(`<div id="music-status" style="position:fixed;bottom:10px;right:10px;background:#0008;color:#fff;padding:4px 8px;border-radius:8px;font-size:13px;z-index:9999;">Loading audio...</div>`);
-
-    currentMusic.play().then(() => {
-        $("#music-status").fadeOut(400, function(){ $(this).remove(); });
-    }).catch(err => {
-        console.warn("Autoplay blocked:", err);
-        $("#music-status").text("Click to enable audio").css("cursor", "pointer").on("click", () => {
-            currentMusic.play();
-            $("#music-status").fadeOut(400, function(){ $(this).remove(); });
-        });
-    });
-}
-
-/* Preload next passage’s music */
-function preloadNextMusic(passageName) {
-    const nextUrl = setup.passageMusic[setup.nextPassageMap[passageName]];
-    if (nextUrl && !setup._audioCache?.[nextUrl]) {
-        preloadAudio(nextUrl);
-    }
-}
-
-/* IMAGE------------------------------------------- */
 /* Mark chapters as preloaded */
 State.variables.preloaded = {};
 
@@ -885,24 +818,9 @@ const preloadMap = {
 /* Listen for passage changes */
 $(document).on(':passagerender', function (ev) {
     const nextChapterNum = preloadMap[ev.passage.title];
-  
-   /* Preload next chapter’s images */
     if (nextChapterNum && !State.variables.preloaded[nextChapterNum]) {
         State.variables.preloaded[nextChapterNum] = true;
         lazyPreloadImageGroup(setup.chapterImages[nextChapterNum], 800); // 800ms delay per image
-    }
-
-    /* Play passage-specific music */
-    const title = ev.passage.title;
-    const music = setup.passageMusic[title];
-    if (music) {
-        playPassageMusic(music);
-    }
-
-    /* Preload next passage’s music */
-    const next = setup.nextPassageMap[title];
-    if (next) {
-        preloadNextMusic(next);
     }
 });
 
