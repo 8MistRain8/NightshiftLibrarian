@@ -398,8 +398,6 @@ setup.chapterImages = {
 
 // Track currently playing music
 let currentMusic = null;
-let currentVolume = 1.0;
-let fadeInterval = null; // used to prevent overlapping fades
 
 // Music URLs per passage
 setup.passageMusic = {
@@ -439,49 +437,6 @@ setup.nextPassageMap = {
 
 /* MUSIC SYSTEM ----------------------------------- */
 
-/* Smooth fade-out ---------------------------------*/
-function fadeOutAudio(audio, duration = 1500) {
-    return new Promise(resolve => {
-        if (!audio) return resolve();
-        if (fadeInterval) clearInterval(fadeInterval);
-        const startVol = audio.volume;
-        const step = startVol / (duration / 50);
-        fadeInterval = setInterval(() => {
-            if (audio.volume - step > 0) {
-                audio.volume -= step;
-            } else {
-                clearInterval(fadeInterval);
-                fadeInterval = null;
-                audio.volume = 0;
-                audio.pause();
-                resolve();
-            }
-        }, 50);
-    });
-}
-
-/* Smooth fade-in */
-function fadeInAudio(audio, targetVol = 1.0, duration = 1500) {
-    if (fadeInterval) clearInterval(fadeInterval);
-    audio.volume = 0;
-    audio.play().catch(err => console.warn("Autoplay blocked:", err));
-    const step = targetVol / (duration / 50);
-    fadeInterval = setInterval(() => {
-        if (audio.volume + step < targetVol) {
-            audio.volume += step;
-        } else {
-            clearInterval(fadeInterval);
-            fadeInterval = null;
-            audio.volume = targetVol;
-        }
-    }, 50);
-}
-
-/* Smooth fade-out ---------------------------------*/
-
-if (!setup._audioCache) setup._audioCache = {};
-if (fadeInterval) clearInterval(fadeInterval);
-
 /* Preload audio and cache it */
 function preloadAudio(url) {
     const audio = new Audio();
@@ -492,30 +447,32 @@ function preloadAudio(url) {
 }
 
 /* Play audio for passage */
-async function playPassageMusic(url) {
+function playPassageMusic(url) {
     if (currentMusic && currentMusic.src === url) return; // already playing
 
-   // Fade out current
     if (currentMusic) {
-        await fadeOutAudio(currentMusic, 1500);
+        currentMusic.pause();
         currentMusic.currentTime = 0;
     }
 
     const cached = setup._audioCache?.[url];
     currentMusic = cached ? cached : new Audio(url);
     currentMusic.loop = true;
+    currentMusic.volume = 1.0;
 
     // Show "Loading audio..." indicator
     $("#music-status").remove();
     $("body").append(`<div id="music-status" style="position:fixed;bottom:10px;right:10px;background:#0008;color:#fff;padding:4px 8px;border-radius:8px;font-size:13px;z-index:9999;">Loading audio...</div>`);
 
-     // Fade in the new track
-    fadeInAudio(currentMusic, currentVolume, 2000);
-
-    // Once it starts playing, hide status
-    currentMusic.onplay = () => {
+    currentMusic.play().then(() => {
         $("#music-status").fadeOut(400, function(){ $(this).remove(); });
-    };
+    }).catch(err => {
+        console.warn("Autoplay blocked:", err);
+        $("#music-status").text("Click to enable audio").css("cursor", "pointer").on("click", () => {
+            currentMusic.play();
+            $("#music-status").fadeOut(400, function(){ $(this).remove(); });
+        });
+    });
 }
 
 /* Preload next passage’s music */
