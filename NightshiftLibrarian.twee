@@ -911,6 +911,20 @@ $(document).on(':passagerender', function () {
 				<button id="btn-pass6" style="margin: 5px;">Chapter 6 - Solitude In a Lonely Castle.</button>
                 <button id="btn-pass7" style="margin: 5px;">Chapter 7 - The Nightshift Librarian.</button>
 				<button id="btn-pass8" style="margin: 5px;">Resist. </button>
+                <div id="volume-control" style="margin-top:20px; text-align:center;">
+  <label for="volume-slider" 
+         style="display:block; font-size:12px; color:#ccc; letter-spacing:0.5px; margin-bottom:6px; text-transform:uppercase;">
+         Music Volume
+  </label>
+  <input type="range" id="volume-slider" 
+         min="0" max="1" step="0.01" value="${currentVolume}"
+         style="width:100%; -webkit-appearance:none; height:6px; border-radius:0px;
+                background:#000;
+                outline:none; cursor:pointer;">
+</div>
+
+
+
             </div>
         `);
 
@@ -940,6 +954,11 @@ $(document).on(':passagerender', function () {
       		$('#btn-pass8').on('click', function () {
     window.open('https://mistrain.neocities.org', '_blank'); // Opens in a new tab
 		});
+      // Volume control handler
+			$('#volume-slider').on('input', function () {
+    currentVolume = parseFloat(this.value);
+    if (currentMusic) currentMusic.volume = currentVolume;
+});
     }
 });
 
@@ -1139,3 +1158,33 @@ a:hover {
 	font-family: "Playfair Display", serif;
 }
 
+/* Slider track background */
+#volume-slider {
+    outline: none;       /* remove default outline */
+    box-shadow: none;    /* remove any glow */
+}
+
+/* Chrome, Safari, Edge */
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: #ccc; /* black thumb */
+    border: none;
+    box-shadow: none; /* remove any shadow */
+}
+
+/* Remove focus outline/shadow on the slider itself */
+#volume-slider:focus {
+    outline: none;
+}
+
+/* Firefox */
+#volume-slider::-moz-range-thumb {
+    background: #000; /* black thumb */
+    border: none;
+    box-shadow: none;
+}
+
+/* Optional: remove focus highlight in Firefox */
+#volume-slider::-moz-focus-outer {
+    border: 0;
+}
